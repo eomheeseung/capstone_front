@@ -47,13 +47,17 @@ function Profile() {
 
     const CustomloadImage = async () => {
         // 업로드 된 이미지 이름을 배열에 담아 라벨링 합니다.
-        const labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+        const labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 
         return Promise.all(
             labels.map(async (label) => {
                 const descriptions = [];
-                const result = await contract.methods.getCriminal(2).call();
+                const r=[];
+                const result = await contract.methods.getCriminal(7).call();
+                const result1 = await contract.methods.getCriminal(3).call();
+                r.push(result);
+                r.push(result1);
                 const attributes = result[5]
                 let jsonatt = JSON.parse(attributes)
                 let crimedescriptors = jsonatt.descriptors[0]
@@ -66,7 +70,7 @@ function Profile() {
 
 
                 // 일단 여기에 넣음
-                criminalTransfer(result)
+                criminalTransfer(r)
 
                 return new faceapi.LabeledFaceDescriptors(label, descriptions);
             })
