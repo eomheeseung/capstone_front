@@ -26,7 +26,7 @@ function dataPerLoop(array) {
 function loop(array) {
     // array를 stream으로 loop
 
-    const realData = array.reduce((acc, cur, i) => ({ ...acc, [`key${i}`]: cur }), {});
+    const realData = array.reduce((acc, cur, i) => ({...acc, [`key${i}`]: cur}), {});
 
     // realData는 javascript 형식의 객체임
     const jsonString = JSON.stringify(realData);
@@ -40,19 +40,26 @@ export const transferData = async (target) => {
     // console.log(target);
     // const jsonString = dataPerloop(target);
     const jsonString = loop(target);
-
-    const config = { "Content-Type": "application/json" };
+    const config = {"Content-Type": "application/json"};
     const response = await axios.post('/test', jsonString, config);
+    console.log(response.data);
 
     return response.data;
 }
-
 
 // 범죄자 데이터 (이미 저장되어 있는 discriptor)
 export const criminalTransfer = async (data) => {
     const criminalString = data;
-    const config = { "Content-Type": "application/json" };
+    const config = {"Content-Type": "application/json"};
     const response = await axios.post('/crime', criminalString, config);
 
     return response.data;
-}
+};
+
+export const distanceTransfer = async (distance) => {
+    const localDistance = distance;
+    const config = {"Content-Type": "application/json"};
+    const response = await axios.post('/distance', localDistance, config);
+
+    return response.data;
+};
