@@ -3,7 +3,7 @@ import './Profile.css'
 import useEth from '../contexts/EthContext/useEth';
 import {useState} from 'react';
 import {useRef} from 'react';
-import {transferData, criminalTransfer, distanceTransfer} from "../api/transfer";
+import {transferData, criminalTransfer, distanceTransfer, findCrimeResponse} from "../api/transfer";
 import * as canvas from 'canvas';
 import * as faceapi from 'face-api.js';
 import {Await} from "react-router-dom";
@@ -181,19 +181,35 @@ function Profile() {
                     for (let i = 0; i < resizedDetected.length; i++) {
                         if (resizedDetected[i]) {
                             // transferData(resizedDetected[i].descriptor)
+                            // let distance;
 
-                            const distance = transferData(resizedDetected[i].descriptor)
-                                .then((data) => console.log(data));
-                            // console.log(typeof distance)
-                            // console.log(typeof (parseInt(distance)))
 
-                            if (parseInt(distance) < 0.4) {
+
+                            transferData(resizedDetected[i].descriptor).then((data) => {
+                                console.log(data);
+                                if (parseInt(data) < 0.4) {
+                                    findCrimeResponse().then((findCrime)=>{
+                                        // findCrime 내부에 범죄자 정보가 다 있음
+                                        console.log(findCrime);
+                                        // 꺼내서 사용할 때는 .name .country .age .flag .criminal .num으로 아래와 같이 사용하면 됨.
+                                        console.log(findCrime.name);
+                                    });
+
+                                    resizedDetections.forEach(detection => {
+                                        const {x, y, width, height} = detection.detection.box;
+                                        canvasRef.current.getContext('2d').strokeStyle = boxColor;
+                                        canvasRef.current.getContext('2d').strokeRect(x, y, width, height);
+                                    });
+                                }
+                            })
+
+                            /*if (parseInt(distance) < 0.4) {
                                 resizedDetections.forEach(detection => {
                                     const {x, y, width, height} = detection.detection.box;
                                     canvasRef.current.getContext('2d').strokeStyle = boxColor;
                                     canvasRef.current.getContext('2d').strokeRect(x, y, width, height);
                                 });
-                            }
+                            }*/
                         }
 
                     }
