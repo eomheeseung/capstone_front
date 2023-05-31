@@ -3,10 +3,9 @@ import './Profile.css'
 import useEth from '../contexts/EthContext/useEth';
 import {useState} from 'react';
 import {useRef} from 'react';
-
+import {transferData, criminalTransfer, findCrimeResponse} from "../api/transfer";
 import * as canvas from 'canvas';
 import * as faceapi from 'face-api.js';
-import {transferData, criminalTransfer} from "../api/transfer";
 
 const {Canvas, Image, ImageData} = canvas;
 faceapi.env.monkeyPatch({
@@ -32,51 +31,37 @@ function Profile() {
     const [modelsLoaded, setModelsLoaded] = useState(false);
     const [captureVideo, setCaptureVideo] = useState(false);
 
-    let input = document.getElementById('myImg')
 
-    async function getCriminal() {
-
-        const result = await contract.methods.getCriminal(1).call();
-        const attributes = result[5]
-        console.log(result[5])
-
-        return (
-            attributes
-        )
-    }
-
-    const CustomloadImage = async () => {
+    const CustomloadImage2 = async () => {
         // 업로드 된 이미지 이름을 배열에 담아 라벨링 합니다.
-        const labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+        // const labels = ["0","1","2","3"];
+        const max = await contract.methods.totalSupply().call();
+        let CriminalList = []
+        let DiscriptorList = []
+        let labels = []
 
+        for (let i = 0; i < max; i++) {
+            //범죄자 info discriptor 파싱
+            const info = await contract.methods.getCriminal(i).call();
+            CriminalList.push(info)
+            labels.push(i);
+            let att = JSON.parse(CriminalList[i][5])
+            let newarray = new Float32Array(att.descriptors[0])
+            DiscriptorList.push(newarray);
+        }
+        criminalTransfer(CriminalList)
 
         return Promise.all(
             labels.map(async (label) => {
-                const descriptions = [];
-                const r=[];
-                const result = await contract.methods.getCriminal(7).call();
-                const result1 = await contract.methods.getCriminal(3).call();
-                r.push(result);
-                r.push(result1);
-                const attributes = result[5]
-                let jsonatt = JSON.parse(attributes)
-                let crimedescriptors = jsonatt.descriptors[0]
-                let newarray = new Float32Array(crimedescriptors)
-                descriptions.push(newarray);
-
-                // 이거보고 string으로 넘겨서 parsing 하면 될듯
-                // console.log(result)
-                // console.log(typeof(result.toString()))
+                let descriptions = [];
+                // let n= parseInt(label)
+                descriptions.push(DiscriptorList[label])
 
 
-                // 일단 여기에 넣음
-                criminalTransfer(r)
-
-                return new faceapi.LabeledFaceDescriptors(label, descriptions);
+                return new faceapi.LabeledFaceDescriptors(label.toString(), descriptions);
             })
         );
     };
-
 
     useEffect(() => {
         const loadModels = async () => {
@@ -107,6 +92,7 @@ function Profile() {
     }
 
     const handleVideoOnPlay = () => {
+
         setInterval(async () => {
             if (canvasRef && canvasRef.current) {
                 canvasRef.current.innerHTML = faceapi.createCanvasFromMedia(videoRef.current);
@@ -115,37 +101,71 @@ function Profile() {
                     height: videoHeight
                 }
 
+
                 faceapi.matchDimensions(canvasRef.current, displaySize);
                 const detections = await faceapi.detectAllFaces(videoRef.current).withFaceLandmarks();
                 const detected = await faceapi.detectAllFaces(videoRef.current).withFaceLandmarks().withFaceDescriptors();
-                // console.log(detections)
-                // let marks=[detections[0].landmarks.positions]
-                // console.log(marks)
-
                 const resizedDetections = faceapi.resizeResults(detections, displaySize);
                 const resizedDetected = faceapi.resizeResults(detected, displaySize);
-
+                //감지된 얼굴들 담은 변수
 
                 // const labeledFaceDescriptors = await loadImage();
                 // console.log(labeledFaceDescriptors)
-
-                const labeledFaceDescriptors = await CustomloadImage();
-
+                const labeledFaceDescriptors = await CustomloadImage2();
                 const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
-                const label = faceMatcher.findBestMatch(resizedDetected[0].descriptor).toString();
-
-
-                console.log(label)
-
-                transferData(resizedDetected[0].descriptor);
-
                 canvasRef && canvasRef.current && canvasRef.current.getContext('2d').clearRect(0, 0, videoWidth, videoHeight);
-                canvasRef && canvasRef.current && faceapi.draw.drawDetections(canvasRef.current, resizedDetections);
-                canvasRef && canvasRef.current && faceapi.draw.drawFaceLandmarks(canvasRef.current, resizedDetections);
+
+
+                //감지된 객체 distance에 따라서 빨강 혹은 파랑 canvas 설정
+                //감지된 각 객ㅊ
+                resizedDetected.forEach(detection => {
+                    // transferData(detection.descriptor)
+                    let distance = faceMatcher.findBestMatch(detection.descriptor).distance;
+                    // console.log(distance)
+                    const {x, y, width, height} = detection.detection.box;
+
+                    //face matcher 백에서 처리후 프론트로 리턴후 판별
+                    transferData(detection.descriptor).then((data => {
+                        console.log(data)
+                        if (data < 0.4) {
+                            findCrimeResponse().then((findCrime) => {
+                                // findCrime 내부에 범죄자 정보가 다 있음
+                                console.log(findCrime);
+                                // 꺼내서 사용할 때는 .name .country .age .flag .criminal .num으로 아래와 같이 사용하면 됨.
+                                console.log(findCrime.name);
+                            });
+
+                            const boxColor = 'red'; // 원하는 색상을 지정합니다.
+                            canvasRef.current.getContext('2d').strokeStyle = boxColor;
+                            canvasRef.current.getContext('2d').strokeRect(x, y, width, height);
+                            canvasRef && canvasRef.current && faceapi.draw.drawFaceLandmarks(canvasRef.current, resizedDetections);
+                        } else {
+
+                            canvasRef && canvasRef.current && faceapi.draw.drawDetections(canvasRef.current, resizedDetections);
+                            canvasRef && canvasRef.current && faceapi.draw.drawFaceLandmarks(canvasRef.current, resizedDetections);
+
+                        }
+                    }));
+
+
+                    // if (distance < 0.4) {
+
+                    //   canvasRef.current.getContext('2d').strokeStyle = boxColor;
+                    //   canvasRef.current.getContext('2d').strokeRect(x, y, width, height);
+                    //   canvasRef && canvasRef.current && faceapi.draw.drawFaceLandmarks(canvasRef.current, resizedDetections);
+                    // }
+                    // else {
+
+                    //   canvasRef && canvasRef.current && faceapi.draw.drawDetections(canvasRef.current, resizedDetections);
+                    //   canvasRef && canvasRef.current && faceapi.draw.drawFaceLandmarks(canvasRef.current, resizedDetections);
+
+                    // }
+                });
+
 
                 // canvasRef && canvasRef.current && faceapi.draw.drawFaceExpressions(canvasRef.current, resizedDetections);
             }
-        }, 100)
+        }, 1000)
     }
 
     const closeWebcam = () => {
@@ -153,11 +173,6 @@ function Profile() {
         videoRef.current.srcObject.getTracks()[0].stop();
         setCaptureVideo(false);
     }
-
-    useEffect(() => {
-
-        console.log(yournumber)
-    }, []);
 
 
     function authentifier() {
@@ -175,7 +190,8 @@ function Profile() {
                                     <div style={{display: 'flex', justifyContent: 'center', padding: '10px'}}>
                                         <video ref={videoRef} height={videoHeight} width={videoWidth}
                                                onPlay={handleVideoOnPlay} style={{borderRadius: '10px'}}/>
-                                        <canvas ref={canvasRef} style={{position: 'absolute'}}/>
+                                        <canvas ref={canvasRef}
+                                                style={{position: 'absolute', border: '1px solid red'}}/>
                                     </div>
                                 </div>
                                 :
@@ -227,15 +243,9 @@ function Profile() {
 
     return (
 
-
         <React.Fragment>
-
-
             {authentifier()}
-
-
         </React.Fragment>
-
 
     );
 }

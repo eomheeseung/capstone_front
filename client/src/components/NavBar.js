@@ -71,7 +71,7 @@ const NavBar = () => {
                     </li>
 
                     <li className='nav-item'>
-                        <Link to="/Profile" className='nav-links' onClick = {closeMobileMenu}>
+                        <Link to="/Detect" className='nav-links' onClick = {closeMobileMenu}>
                             DETECTED CRIMINAL
                         </Link>
                     </li>

@@ -15,21 +15,21 @@
     "absolutePath": "project:/contracts/crosschain/CrossChainEnabled.sol",
     "exportedSymbols": {
       "CrossChainEnabled": [
-        1504
+        1544
       ],
       "InvalidCrossChainSender": [
-        1818
+        1858
       ],
       "NotCrossChainCall": [
-        1812
+        1852
       ]
     },
-    "id": 1505,
+    "id": 1545,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1456,
+        "id": 1496,
         "literals": [
           "solidity",
           "^",
@@ -42,11 +42,11 @@
       {
         "absolutePath": "project:/contracts/crosschain/errors.sol",
         "file": "./errors.sol",
-        "id": 1457,
+        "id": 1497,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 1505,
-        "sourceUnit": 1819,
+        "scope": 1545,
+        "sourceUnit": 1859,
         "src": "141:22:157",
         "symbolAliases": [],
         "unitAlias": ""
@@ -58,15 +58,15 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "documentation": {
-          "id": 1458,
+          "id": 1498,
           "nodeType": "StructuredDocumentation",
           "src": "165:496:157",
           "text": " @dev Provides information for building cross-chain aware contracts. This\n abstract contract provides accessors and modifiers to control the execution\n flow when receiving cross-chain messages.\n Actual implementations of cross-chain aware contracts, which are based on\n this abstraction, will  have to inherit from a bridge-specific\n specialization. Such specializations are provided under\n `crosschain/<chain>/CrossChainEnabled<chain>.sol`.\n _Available since v4.6._"
         },
         "fullyImplemented": false,
-        "id": 1504,
+        "id": 1544,
         "linearizedBaseContracts": [
-          1504
+          1544
         ],
         "name": "CrossChainEnabled",
         "nameLocation": "680:17:157",
@@ -74,13 +74,13 @@
         "nodes": [
           {
             "body": {
-              "id": 1469,
+              "id": 1509,
               "nodeType": "Block",
               "src": "847:76:157",
               "statements": [
                 {
                   "condition": {
-                    "id": 1463,
+                    "id": 1503,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -93,18 +93,18 @@
                       "arguments": [],
                       "expression": {
                         "argumentTypes": [],
-                        "id": 1461,
+                        "id": 1501,
                         "name": "_isCrossChain",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1497,
+                        "referencedDeclaration": 1537,
                         "src": "862:13:157",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_view$__$returns$_t_bool_$",
                           "typeString": "function () view returns (bool)"
                         }
                       },
-                      "id": 1462,
+                      "id": 1502,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -124,7 +124,7 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 1467,
+                  "id": 1507,
                   "nodeType": "IfStatement",
                   "src": "857:48:157",
                   "trueBody": {
@@ -132,18 +132,18 @@
                       "arguments": [],
                       "expression": {
                         "argumentTypes": [],
-                        "id": 1464,
+                        "id": 1504,
                         "name": "NotCrossChainCall",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1812,
+                        "referencedDeclaration": 1852,
                         "src": "886:17:157",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_error_pure$__$returns$__$",
                           "typeString": "function () pure"
                         }
                       },
-                      "id": 1465,
+                      "id": 1505,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -158,30 +158,30 @@
                         "typeString": "tuple()"
                       }
                     },
-                    "id": 1466,
+                    "id": 1506,
                     "nodeType": "RevertStatement",
                     "src": "879:26:157"
                   }
                 },
                 {
-                  "id": 1468,
+                  "id": 1508,
                   "nodeType": "PlaceholderStatement",
                   "src": "915:1:157"
                 }
               ]
             },
             "documentation": {
-              "id": 1459,
+              "id": 1499,
               "nodeType": "StructuredDocumentation",
               "src": "704:112:157",
               "text": " @dev Throws if the current function call is not the result of a\n cross-chain execution."
             },
-            "id": 1470,
+            "id": 1510,
             "name": "onlyCrossChain",
             "nameLocation": "830:14:157",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1460,
+              "id": 1500,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "844:2:157"
@@ -192,23 +192,23 @@
           },
           {
             "body": {
-              "id": 1490,
+              "id": 1530,
               "nodeType": "Block",
               "src": "1117:146:157",
               "statements": [
                 {
                   "assignments": [
-                    1476
+                    1516
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1476,
+                      "id": 1516,
                       "mutability": "mutable",
                       "name": "actual",
                       "nameLocation": "1135:6:157",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1490,
+                      "scope": 1530,
                       "src": "1127:14:157",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -217,7 +217,7 @@
                         "typeString": "address"
                       },
                       "typeName": {
-                        "id": 1475,
+                        "id": 1515,
                         "name": "address",
                         "nodeType": "ElementaryTypeName",
                         "src": "1127:7:157",
@@ -230,23 +230,23 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1479,
+                  "id": 1519,
                   "initialValue": {
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 1477,
+                      "id": 1517,
                       "name": "_crossChainSender",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1503,
+                      "referencedDeclaration": 1543,
                       "src": "1144:17:157",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$__$returns$_t_address_$",
                         "typeString": "function () view returns (address)"
                       }
                     },
-                    "id": 1478,
+                    "id": 1518,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -270,17 +270,17 @@
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     },
-                    "id": 1482,
+                    "id": 1522,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 1480,
+                      "id": 1520,
                       "name": "expected",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1473,
+                      "referencedDeclaration": 1513,
                       "src": "1177:8:157",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -290,11 +290,11 @@
                     "nodeType": "BinaryOperation",
                     "operator": "!=",
                     "rightExpression": {
-                      "id": 1481,
+                      "id": 1521,
                       "name": "actual",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1476,
+                      "referencedDeclaration": 1516,
                       "src": "1189:6:157",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -307,18 +307,18 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 1488,
+                  "id": 1528,
                   "nodeType": "IfStatement",
                   "src": "1173:72:157",
                   "trueBody": {
                     "errorCall": {
                       "arguments": [
                         {
-                          "id": 1484,
+                          "id": 1524,
                           "name": "actual",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1476,
+                          "referencedDeclaration": 1516,
                           "src": "1228:6:157",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -326,11 +326,11 @@
                           }
                         },
                         {
-                          "id": 1485,
+                          "id": 1525,
                           "name": "expected",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1473,
+                          "referencedDeclaration": 1513,
                           "src": "1236:8:157",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -349,18 +349,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 1483,
+                        "id": 1523,
                         "name": "InvalidCrossChainSender",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1818,
+                        "referencedDeclaration": 1858,
                         "src": "1204:23:157",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_error_pure$_t_address_$_t_address_$returns$__$",
                           "typeString": "function (address,address) pure"
                         }
                       },
-                      "id": 1486,
+                      "id": 1526,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -375,40 +375,40 @@
                         "typeString": "tuple()"
                       }
                     },
-                    "id": 1487,
+                    "id": 1527,
                     "nodeType": "RevertStatement",
                     "src": "1197:48:157"
                   }
                 },
                 {
-                  "id": 1489,
+                  "id": 1529,
                   "nodeType": "PlaceholderStatement",
                   "src": "1255:1:157"
                 }
               ]
             },
             "documentation": {
-              "id": 1471,
+              "id": 1511,
               "nodeType": "StructuredDocumentation",
               "src": "929:135:157",
               "text": " @dev Throws if the current function call is not the result of a\n cross-chain execution initiated by `account`."
             },
-            "id": 1491,
+            "id": 1531,
             "name": "onlyCrossChainSender",
             "nameLocation": "1078:20:157",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1474,
+              "id": 1514,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1473,
+                  "id": 1513,
                   "mutability": "mutable",
                   "name": "expected",
                   "nameLocation": "1107:8:157",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1491,
+                  "scope": 1531,
                   "src": "1099:16:157",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -417,7 +417,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1472,
+                    "id": 1512,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1099:7:157",
@@ -438,12 +438,12 @@
           },
           {
             "documentation": {
-              "id": 1492,
+              "id": 1532,
               "nodeType": "StructuredDocumentation",
               "src": "1269:112:157",
               "text": " @dev Returns whether the current function call is the result of a\n cross-chain message."
             },
-            "id": 1497,
+            "id": 1537,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -451,23 +451,23 @@
             "nameLocation": "1395:13:157",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1493,
+              "id": 1533,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1408:2:157"
             },
             "returnParameters": {
-              "id": 1496,
+              "id": 1536,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1495,
+                  "id": 1535,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1497,
+                  "scope": 1537,
                   "src": "1442:4:157",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -476,7 +476,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1494,
+                    "id": 1534,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1442:4:157",
@@ -490,7 +490,7 @@
               ],
               "src": "1441:6:157"
             },
-            "scope": 1504,
+            "scope": 1544,
             "src": "1386:62:157",
             "stateMutability": "view",
             "virtual": true,
@@ -498,12 +498,12 @@
           },
           {
             "documentation": {
-              "id": 1498,
+              "id": 1538,
               "nodeType": "StructuredDocumentation",
               "src": "1454:277:157",
               "text": " @dev Returns the address of the sender of the cross-chain message that\n triggered the current function call.\n IMPORTANT: Should revert with `NotCrossChainCall` if the current function\n call is not the result of a cross-chain message."
             },
-            "id": 1503,
+            "id": 1543,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -511,23 +511,23 @@
             "nameLocation": "1745:17:157",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1499,
+              "id": 1539,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1762:2:157"
             },
             "returnParameters": {
-              "id": 1502,
+              "id": 1542,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1501,
+                  "id": 1541,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1503,
+                  "scope": 1543,
                   "src": "1796:7:157",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -536,7 +536,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1500,
+                    "id": 1540,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1796:7:157",
@@ -551,14 +551,14 @@
               ],
               "src": "1795:9:157"
             },
-            "scope": 1504,
+            "scope": 1544,
             "src": "1736:69:157",
             "stateMutability": "view",
             "virtual": true,
             "visibility": "internal"
           }
         ],
-        "scope": 1505,
+        "scope": 1545,
         "src": "662:1145:157",
         "usedErrors": []
       }
@@ -571,7 +571,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.13",
-  "updatedAt": "2023-05-13T13:36:26.254Z",
+  "updatedAt": "2023-05-18T13:22:07.599Z",
   "devdoc": {
     "details": "Provides information for building cross-chain aware contracts. This abstract contract provides accessors and modifiers to control the execution flow when receiving cross-chain messages. Actual implementations of cross-chain aware contracts, which are based on this abstraction, will  have to inherit from a bridge-specific specialization. Such specializations are provided under `crosschain/<chain>/CrossChainEnabled<chain>.sol`. _Available since v4.6._",
     "kind": "dev",

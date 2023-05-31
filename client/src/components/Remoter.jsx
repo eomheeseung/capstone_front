@@ -4,8 +4,9 @@ import Footer from "./Footer";
 import NavBar from './NavBar';
 import Main from './Main';
 import Profile from './Profile'
+import Detect from './Detect';
 
-function Remoter({props=[],trdata=[]})
+function Remoter()
 {
  
  
@@ -19,7 +20,10 @@ function Remoter({props=[],trdata=[]})
         <Routes element={<NavBar/>}>
           <Route path='/Footer' element={<Footer/>}/> 
           <Route path='/' element={<Main/>}/>
-          <Route path='/Profile' element={<Profile props={props} trdata={trdata}/>}/>
+          <Route path='/Profile' element={<Profile/>}/>
+          <Route path='/Detect' element={<Detect/>}/>
+
+
         </Routes>
 
     </BrowserRouter>

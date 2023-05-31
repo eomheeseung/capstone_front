@@ -15,30 +15,30 @@
     "absolutePath": "project:/contracts/crosschain/optimism/CrossChainEnabledOptimism.sol",
     "exportedSymbols": {
       "CrossChainEnabled": [
-        1504
+        1544
       ],
       "CrossChainEnabledOptimism": [
-        1868
+        1908
       ],
       "InvalidCrossChainSender": [
-        1818
+        1858
       ],
       "LibOptimism": [
-        1912
+        1952
       ],
       "NotCrossChainCall": [
-        1812
+        1852
       ],
       "Optimism_Bridge": [
-        5139
+        5517
       ]
     },
-    "id": 1869,
+    "id": 1909,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1820,
+        "id": 1860,
         "literals": [
           "solidity",
           "^",
@@ -51,11 +51,11 @@
       {
         "absolutePath": "project:/contracts/crosschain/CrossChainEnabled.sol",
         "file": "../CrossChainEnabled.sol",
-        "id": 1821,
+        "id": 1861,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 1869,
-        "sourceUnit": 1505,
+        "scope": 1909,
+        "sourceUnit": 1545,
         "src": "158:34:165",
         "symbolAliases": [],
         "unitAlias": ""
@@ -63,11 +63,11 @@
       {
         "absolutePath": "project:/contracts/crosschain/optimism/LibOptimism.sol",
         "file": "./LibOptimism.sol",
-        "id": 1822,
+        "id": 1862,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 1869,
-        "sourceUnit": 1913,
+        "scope": 1909,
+        "sourceUnit": 1953,
         "src": "193:27:165",
         "symbolAliases": [],
         "unitAlias": ""
@@ -77,13 +77,13 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 1824,
+              "id": 1864,
               "name": "CrossChainEnabled",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1504,
+              "referencedDeclaration": 1544,
               "src": "720:17:165"
             },
-            "id": 1825,
+            "id": 1865,
             "nodeType": "InheritanceSpecifier",
             "src": "720:17:165"
           }
@@ -92,16 +92,16 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "documentation": {
-          "id": 1823,
+          "id": 1863,
           "nodeType": "StructuredDocumentation",
           "src": "222:450:165",
           "text": " @dev https://www.optimism.io/[Optimism] specialization or the\n {CrossChainEnabled} abstraction.\n The messenger (`CrossDomainMessenger`) contract is provided and maintained by\n the optimism team. You can find the address of this contract on mainnet and\n kovan in the https://github.com/ethereum-optimism/optimism/tree/develop/packages/contracts/deployments[deployments section of Optimism monorepo].\n _Available since v4.6._"
         },
         "fullyImplemented": true,
-        "id": 1868,
+        "id": 1908,
         "linearizedBaseContracts": [
-          1868,
-          1504
+          1908,
+          1544
         ],
         "name": "CrossChainEnabledOptimism",
         "nameLocation": "691:25:165",
@@ -110,17 +110,17 @@
           {
             "constant": false,
             "documentation": {
-              "id": 1826,
+              "id": 1866,
               "nodeType": "StructuredDocumentation",
               "src": "744:61:165",
               "text": "@custom:oz-upgrades-unsafe-allow state-variable-immutable"
             },
-            "id": 1828,
+            "id": 1868,
             "mutability": "immutable",
             "name": "_messenger",
             "nameLocation": "836:10:165",
             "nodeType": "VariableDeclaration",
-            "scope": 1868,
+            "scope": 1908,
             "src": "810:36:165",
             "stateVariable": true,
             "storageLocation": "default",
@@ -129,7 +129,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1827,
+              "id": 1867,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "810:7:165",
@@ -143,23 +143,23 @@
           },
           {
             "body": {
-              "id": 1838,
+              "id": 1878,
               "nodeType": "Block",
               "src": "937:39:165",
               "statements": [
                 {
                   "expression": {
-                    "id": 1836,
+                    "id": 1876,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 1834,
+                      "id": 1874,
                       "name": "_messenger",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1828,
+                      "referencedDeclaration": 1868,
                       "src": "947:10:165",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -169,11 +169,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 1835,
+                      "id": 1875,
                       "name": "messenger",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1831,
+                      "referencedDeclaration": 1871,
                       "src": "960:9:165",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -186,19 +186,19 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 1837,
+                  "id": 1877,
                   "nodeType": "ExpressionStatement",
                   "src": "947:22:165"
                 }
               ]
             },
             "documentation": {
-              "id": 1829,
+              "id": 1869,
               "nodeType": "StructuredDocumentation",
               "src": "853:48:165",
               "text": "@custom:oz-upgrades-unsafe-allow constructor"
             },
-            "id": 1839,
+            "id": 1879,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -206,17 +206,17 @@
             "nameLocation": "-1:-1:-1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1832,
+              "id": 1872,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1831,
+                  "id": 1871,
                   "mutability": "mutable",
                   "name": "messenger",
                   "nameLocation": "926:9:165",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1839,
+                  "scope": 1879,
                   "src": "918:17:165",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -225,7 +225,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1830,
+                    "id": 1870,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "918:7:165",
@@ -241,12 +241,12 @@
               "src": "917:19:165"
             },
             "returnParameters": {
-              "id": 1833,
+              "id": 1873,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "937:0:165"
             },
-            "scope": 1868,
+            "scope": 1908,
             "src": "906:70:165",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -254,10 +254,10 @@
           },
           {
             "baseFunctions": [
-              1497
+              1537
             ],
             "body": {
-              "id": 1851,
+              "id": 1891,
               "nodeType": "Block",
               "src": "1119:60:165",
               "statements": [
@@ -265,11 +265,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 1848,
+                        "id": 1888,
                         "name": "_messenger",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1828,
+                        "referencedDeclaration": 1868,
                         "src": "1161:10:165",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -285,32 +285,32 @@
                         }
                       ],
                       "expression": {
-                        "id": 1846,
+                        "id": 1886,
                         "name": "LibOptimism",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1912,
+                        "referencedDeclaration": 1952,
                         "src": "1136:11:165",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_LibOptimism_$1912_$",
+                          "typeIdentifier": "t_type$_t_contract$_LibOptimism_$1952_$",
                           "typeString": "type(library LibOptimism)"
                         }
                       },
-                      "id": 1847,
+                      "id": 1887,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "isCrossChain",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1888,
+                      "referencedDeclaration": 1928,
                       "src": "1136:24:165",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
                         "typeString": "function (address) view returns (bool)"
                       }
                     },
-                    "id": 1849,
+                    "id": 1889,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -325,20 +325,20 @@
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 1845,
-                  "id": 1850,
+                  "functionReturnParameters": 1885,
+                  "id": 1890,
                   "nodeType": "Return",
                   "src": "1129:43:165"
                 }
               ]
             },
             "documentation": {
-              "id": 1840,
+              "id": 1880,
               "nodeType": "StructuredDocumentation",
               "src": "982:61:165",
               "text": " @dev see {CrossChainEnabled-_isCrossChain}"
             },
-            "id": 1852,
+            "id": 1892,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -346,29 +346,29 @@
             "nameLocation": "1057:13:165",
             "nodeType": "FunctionDefinition",
             "overrides": {
-              "id": 1842,
+              "id": 1882,
               "nodeType": "OverrideSpecifier",
               "overrides": [],
               "src": "1095:8:165"
             },
             "parameters": {
-              "id": 1841,
+              "id": 1881,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1070:2:165"
             },
             "returnParameters": {
-              "id": 1845,
+              "id": 1885,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1844,
+                  "id": 1884,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1852,
+                  "scope": 1892,
                   "src": "1113:4:165",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -377,7 +377,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1843,
+                    "id": 1883,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1113:4:165",
@@ -391,7 +391,7 @@
               ],
               "src": "1112:6:165"
             },
-            "scope": 1868,
+            "scope": 1908,
             "src": "1048:131:165",
             "stateMutability": "view",
             "virtual": true,
@@ -399,10 +399,10 @@
           },
           {
             "baseFunctions": [
-              1503
+              1543
             ],
             "body": {
-              "id": 1866,
+              "id": 1906,
               "nodeType": "Block",
               "src": "1348:64:165",
               "statements": [
@@ -410,11 +410,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 1863,
+                        "id": 1903,
                         "name": "_messenger",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1828,
+                        "referencedDeclaration": 1868,
                         "src": "1394:10:165",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -430,32 +430,32 @@
                         }
                       ],
                       "expression": {
-                        "id": 1861,
+                        "id": 1901,
                         "name": "LibOptimism",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1912,
+                        "referencedDeclaration": 1952,
                         "src": "1365:11:165",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_LibOptimism_$1912_$",
+                          "typeIdentifier": "t_type$_t_contract$_LibOptimism_$1952_$",
                           "typeString": "type(library LibOptimism)"
                         }
                       },
-                      "id": 1862,
+                      "id": 1902,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "crossChainSender",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1911,
+                      "referencedDeclaration": 1951,
                       "src": "1365:28:165",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_address_$",
                         "typeString": "function (address) view returns (address)"
                       }
                     },
-                    "id": 1864,
+                    "id": 1904,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -470,31 +470,31 @@
                       "typeString": "address"
                     }
                   },
-                  "functionReturnParameters": 1860,
-                  "id": 1865,
+                  "functionReturnParameters": 1900,
+                  "id": 1905,
                   "nodeType": "Return",
                   "src": "1358:47:165"
                 }
               ]
             },
             "documentation": {
-              "id": 1853,
+              "id": 1893,
               "nodeType": "StructuredDocumentation",
               "src": "1185:65:165",
               "text": " @dev see {CrossChainEnabled-_crossChainSender}"
             },
-            "id": 1867,
+            "id": 1907,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 1857,
+                "id": 1897,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 1856,
+                  "id": 1896,
                   "name": "onlyCrossChain",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 1470,
+                  "referencedDeclaration": 1510,
                   "src": "1315:14:165"
                 },
                 "nodeType": "ModifierInvocation",
@@ -505,29 +505,29 @@
             "nameLocation": "1264:17:165",
             "nodeType": "FunctionDefinition",
             "overrides": {
-              "id": 1855,
+              "id": 1895,
               "nodeType": "OverrideSpecifier",
               "overrides": [],
               "src": "1306:8:165"
             },
             "parameters": {
-              "id": 1854,
+              "id": 1894,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1281:2:165"
             },
             "returnParameters": {
-              "id": 1860,
+              "id": 1900,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1859,
+                  "id": 1899,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1867,
+                  "scope": 1907,
                   "src": "1339:7:165",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -536,7 +536,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1858,
+                    "id": 1898,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1339:7:165",
@@ -551,14 +551,14 @@
               ],
               "src": "1338:9:165"
             },
-            "scope": 1868,
+            "scope": 1908,
             "src": "1255:157:165",
             "stateMutability": "view",
             "virtual": true,
             "visibility": "internal"
           }
         ],
-        "scope": 1869,
+        "scope": 1909,
         "src": "673:741:165",
         "usedErrors": []
       }
@@ -571,7 +571,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.13",
-  "updatedAt": "2023-05-13T13:36:26.257Z",
+  "updatedAt": "2023-05-18T13:22:07.602Z",
   "devdoc": {
     "details": "https://www.optimism.io/[Optimism] specialization or the {CrossChainEnabled} abstraction. The messenger (`CrossDomainMessenger`) contract is provided and maintained by the optimism team. You can find the address of this contract on mainnet and kovan in the https://github.com/ethereum-optimism/optimism/tree/develop/packages/contracts/deployments[deployments section of Optimism monorepo]. _Available since v4.6._",
     "kind": "dev",

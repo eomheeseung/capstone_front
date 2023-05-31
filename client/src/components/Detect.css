@@ -1,0 +1,14 @@
+.Detect
+{
+
+display: grid;
+grid-column: 5/13;
+width: 600px;
+grid-row: 2/8;
+font-family: 'Cafe24Ssurround';
+border-spacing: 0;
+ 
+
+}
+
+

@@ -4,6 +4,7 @@ import React from 'react';
 import "./Footer.css"
 import useEth from "../contexts/EthContext/useEth";
 import { Buffer } from 'buffer';
+import {transferData, criminalTransfer} from "../api/transfer";
 
 import {
   EthereumClient,
@@ -14,7 +15,9 @@ import {
 
 import { Web3Button } from "@web3modal/react";
 import { Web3Modal } from "@web3modal/react";
-import { configureChains, createClient, WagmiConfig } from "wagmi";
+
+import { configureChains, createConfig, WagmiConfig } from "wagmi";
+
 import { sepolia } from "wagmi/chains";
 import * as faceapi from 'face-api.js';
 import * as canvas from 'canvas';
@@ -46,9 +49,9 @@ function Footer() {
   
   
   
-  const {provider} = configureChains(chains,[w3mProvider({ projectId:'ad51cb658b57c4bb5916b92e7f4a4ff7'})]);
+  const {publicClient} = configureChains(chains,[w3mProvider({ projectId:'ad51cb658b57c4bb5916b92e7f4a4ff7'})]);
     
-  const wagmiClient = createClient({
+  const wagmiConfig = createConfig({
     autoConnect: true,
     connectors: w3mConnectors({
   
@@ -58,11 +61,13 @@ function Footer() {
     chains,
     
   }),
-  provider,
+  publicClient,
   });
 
   
-  const ethereumClient = new EthereumClient(wagmiClient,chains);
+
+  
+  const ethereumClient = new EthereumClient(wagmiConfig,chains);
   
 
 useEffect(() => {
@@ -161,9 +166,17 @@ catch (error) {
 async function getCriminal()
 {
   try {
-    const result = await contract.methods.getCriminal(7).call();
-      console.log(result)
+    let CriminalList=[]
+    const max= await contract.methods.totalSupply().call();
+    for(let i=0; i<max; i++)
+    {
+      const info = await contract.methods.getCriminal(i).call();
+      CriminalList.push(info)
+     
+    }
 
+    console.log(CriminalList)
+    criminalTransfer(CriminalList)
 
 } 
 catch (error) {  
@@ -188,16 +201,12 @@ catch (error) {
 
   return (
 
+<WagmiConfig config={wagmiConfig} >      
   <div className='Deploys' >
-
-<WagmiConfig client={wagmiClient} >            
-            </WagmiConfig>
-        <Web3Modal projectId="ad51cb658b57c4bb5916b92e7f4a4ff7"ethereumClient={ethereumClient}/>
+      
 
 
 <div className='Procedure'>
-
-
       
       <div className='container'>
     <div className='CrimeDetail' style={{display:'inline-block'}}>
@@ -254,7 +263,7 @@ catch (error) {
       </div>
       <div style={{display:'inline-block',float:'left', width:'300px', height:'60px'}}>
       <input name='selectaddr' placeholder='insert address for athorization' value={selectaddr} onChange={onChange} style={{width:'200px',height:'30px',float:'left'}}></input>
-      <label  onClick={addAllowedUser}   className='custom-btn2'style={{float:'left'}} >Authorize</label>
+      <label  onClick={addAllowedUser}   className='custom-btn2'style={{float:'left',background:'red'}} >Authorize</label>
       <label  onClick={getCriminal}   className='custom-btn2' >criminal log</label>
 <label type="fileupload" onClick={discriptorFromImage} id="fileup"  className='custom-btn2' >transaction</label>
 
@@ -270,12 +279,10 @@ catch (error) {
 
     <Web3Button  />    
     </div>
-
-
-    
-
   </div>
+  <Web3Modal projectId="ad51cb658b57c4bb5916b92e7f4a4ff7"ethereumClient={ethereumClient}/>
 
+  </WagmiConfig>
   
    
   );

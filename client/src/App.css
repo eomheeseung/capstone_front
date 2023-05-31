@@ -65,6 +65,8 @@
     grid-row: 9/9;
   }
 
+  
+
   @media all and (max-width: 412px) {
     .Bottom {
       width: 412px;

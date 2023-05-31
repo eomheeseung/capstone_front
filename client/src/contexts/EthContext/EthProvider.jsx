@@ -2,15 +2,7 @@ import React, { useReducer, useCallback, useEffect, useState } from "react";
 import Web3 from "web3";
 import EthContext from "./EthContext";
 import { reducer, actions, initialState } from "./state";
-import WalletConnectProvdier from "@walletconnect/web3-provider";
-import { infuraProvider } from 'wagmi/providers/infura'
-import { Web3Button } from "@web3modal/react";
 
-// import {
-//   EthereumClient,
-//   modalConnectors,
-//   walletConnectProvider,
-// } from "@web3modal/ethereum";
 
 import {
   EthereumClient,
@@ -18,13 +10,10 @@ import {
   w3mProvider
 } from "@web3modal/ethereum";
 
-
 import { Web3Modal } from "@web3modal/react";
-import { configureChains, createClient, WagmiConfig } from "wagmi";
+import { configureChains, createConfig, WagmiConfig } from "wagmi";
+
 import { sepolia } from "wagmi/chains";
-
-
-// import '@tensorflow/tfjs-node';
 
   
 var newjson=[]
@@ -33,20 +22,20 @@ export  function EthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const chains =[sepolia];
 
-const {provider} = configureChains(chains,[ w3mProvider({ projectId: "ad51cb658b57c4bb5916b92e7f4a4ff7" })]);
+const {publicClient} = configureChains(chains,[ w3mProvider({ projectId: "ad51cb658b57c4bb5916b92e7f4a4ff7" })]);
 
-const wagmiClient = createClient({
-  autoConnect: true,
-  connectors: w3mConnectors({
-    projectId: "ad51cb658b57c4bb5916b92e7f4a4ff7",
-    version: "1", // or "2"
-    chains,
-  }),
-  provider,
-});
+// const wagmiClient = createConfig({
+//   autoConnect: true,
+//   connectors: w3mConnectors({
+//     projectId: "ad51cb658b57c4bb5916b92e7f4a4ff7",
+//     version: "1", // or "2"
+//     chains,
+//   }),
+//   publicClient,
+// });
 
 // Web3Modal Ethereum Client
-const ethereumClient = new EthereumClient(wagmiClient,chains);
+// const ethereumClient = new EthereumClient(wagmiClient,chains);
 
 //  const provider3 = new WalletConnectProvdier({
   
@@ -115,7 +104,7 @@ const ethereumClient = new EthereumClient(wagmiClient,chains);
           web3.utils.toChecksumAddress(address)
 
           contract = new web3.eth.Contract(abi, address);   
-          console.log(contract.methods)
+          console.log(contract)
           
         } catch (err) {
           console.error(err);
@@ -123,7 +112,7 @@ const ethereumClient = new EthereumClient(wagmiClient,chains);
         }
         dispatch({
           type: actions.init,
-          data: { artifact, web3, accounts, networkID, contract,newjson,provider}
+          data: { artifact, web3, accounts, networkID, contract,newjson,publicClient}
         });
       }
     }, []);
